@@ -11,7 +11,7 @@ def process_song_file(cur, filepath):
     df = pd.read_json(filepath, lines=True)
 
     for value in df.values:
-        artist_id, artist_latitude, artist_location, artist_longitude, artist_name, duration, num_songs, song_id, title, year = value
+        num_songs, artist_id, artist_latitude, artist_longitude, artist_location, artist_name, song_id, title, duration,year = value
 
         # insert artist record
         artist_data = [artist_id, artist_name, artist_location, artist_longitude, artist_latitude]
