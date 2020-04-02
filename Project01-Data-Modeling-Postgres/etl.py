@@ -16,16 +16,29 @@ def process_song_file(cur, filepath):
     # open song file
     df = pd.read_json(filepath, lines=True)
 
-    for value in df.values:
-        num_songs, artist_id, artist_latitude, artist_longitude, artist_location, \
-        artist_name, song_id, title, duration,year = value
+    for index,row in df.iterrows():
+        #convert the Dataframe row into a dictonary
+        values = {}
+        for column in df.columns:
+            values[column] = row[column]
+
 
         # insert artist record
-        artist_data = [artist_id, artist_name, artist_location, artist_longitude, artist_latitude]
+        artist_data = [values['artist_id'], 
+                        values['artist_name'], 
+                        values['artist_location'], 
+                        float(values['artist_longitude']), 
+                        float(values['artist_latitude'])]
+
         cur.execute(artist_table_insert, artist_data)
 
         # insert song record
-        song_data = [song_id, title, artist_id, year, duration]
+        song_data = [values['song_id'], 
+                    values['title'],
+                    values['artist_id'], 
+                    int(values['year']), 
+                    float(values['duration'])]
+
         cur.execute(song_table_insert, song_data)
 
 
