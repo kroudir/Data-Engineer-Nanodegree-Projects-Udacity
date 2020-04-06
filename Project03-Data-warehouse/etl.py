@@ -20,12 +20,17 @@ def main():
     config.read('dwh.cfg')
 
     conn = psycopg2.connect("host={} dbname={} user={} password={} port={}".format(*config['CLUSTER'].values()))
+    print('1. Connected')
     cur = conn.cursor()
+    print('2. Created Cursor')
     
     load_staging_tables(cur, conn)
+    print('2. Loaded to staging')
     insert_tables(cur, conn)
+    print('3. Inserted into tables')
 
     conn.close()
+    print('4. Closed the connection')
 
 
 if __name__ == "__main__":
