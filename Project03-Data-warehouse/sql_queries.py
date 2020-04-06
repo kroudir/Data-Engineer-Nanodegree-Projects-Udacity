@@ -194,9 +194,40 @@ songplay_table_insert = ("""
     AND e.page  =  'NextSong'
 """)
 
+
+# GET NUMBER OF ROWS IN EACH TABLE
+get_number_staging_events = ("""
+    SELECT COUNT(*) FROM staging_events
+""")
+
+get_number_staging_songs = ("""
+    SELECT COUNT(*) FROM staging_songs
+""")
+
+get_number_songplays = ("""
+    SELECT COUNT(*) FROM songplays
+""")
+
+get_number_users = ("""
+    SELECT COUNT(*) FROM users
+""")
+
+get_number_songs = ("""
+    SELECT COUNT(*) FROM songs
+""")
+
+get_number_artists = ("""
+    SELECT COUNT(*) FROM artists
+""")
+
+get_number_time = ("""
+    SELECT COUNT(*) FROM time
+""")
+
 # QUERY LISTS
 
 create_table_queries = [staging_events_table_create, staging_songs_table_create, songplay_table_create, user_table_create, song_table_create, artist_table_create, time_table_create]
 drop_table_queries = [staging_events_table_drop, staging_songs_table_drop, songplay_table_drop, user_table_drop, song_table_drop, artist_table_drop, time_table_drop]
 copy_table_queries = [staging_events_copy, staging_songs_copy]
 insert_table_queries = [songplay_table_insert, user_table_insert, song_table_insert, artist_table_insert, time_table_insert]
+select_number_rows_queries= [get_number_staging_events, get_number_staging_songs, get_number_songplays, get_number_users, get_number_songs, get_number_artists, get_number_time]
