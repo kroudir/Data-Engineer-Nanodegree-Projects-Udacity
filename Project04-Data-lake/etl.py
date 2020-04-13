@@ -4,7 +4,9 @@ import os
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import udf, col
 from pyspark.sql.functions import year, month, dayofmonth, hour, weekofyear, date_format
-
+from pyspark.sql.types import StructType as R, StructField as Fld, DoubleType as Dbl, \
+                                StringType as Str, IntegerType as Int, DateType as Dat, \
+                                TimestampType
 
 config = configparser.ConfigParser()
 config.read('dl.cfg')
@@ -23,22 +25,37 @@ def create_spark_session():
 
 def process_song_data(spark, input_data, output_data):
     # get filepath to song data file
-    song_data = 
+    song_data = input_data + 'song_data/*/*/*/*.json'
     
+    #define the song schema
+    songSchema = R([
+        Fld("artist_id",Str()),
+        Fld("artist_latitude",Dbl()),
+        Fld("artist_location",Str()),
+        Fld("artist_longitude",Dbl()),
+        Fld("artist_name",Str()),
+        Fld("duration",Dbl()),
+        Fld("num_songs",Int()),
+        Fld("title",Str()),
+        Fld("year",Int()),
+    ])
     # read song data file
-    df = 
+    df = spark.read.json(song_data, schema=songSchema)
 
     # extract columns to create songs table
-    songs_table = 
+    song_columns = ["title", "artist_id","year", "duration"]
+    songs_table = df.select(song_columns).dropDuplicates().withColumn("song_id", monotonically_increasing_id())
     
     # write songs table to parquet files partitioned by year and artist
-    songs_table
+    songs_table.write.partitionBy("year", "artist_id").parquet(output_data + 'songs/')
 
     # extract columns to create artists table
-    artists_table = 
+    artists_columns = ["artist_id", "artist_name as name", "artist_location as location", \
+                        "artist_latitude as latitude", "artist_longitude as longitude"]
+    artists_table = df.selectExpr(artists_columns).dropDuplicates()
     
     # write artists table to parquet files
-    artists_table
+    artists_table.write.parquet(output_data + 'artists/')
 
 
 def process_log_data(spark, input_data, output_data):
