@@ -8,12 +8,12 @@ def get_results(cur, conn):
     Get the number of rows stored into each table
     """
     for query in select_number_rows_queries:
-        print('Running ' + query)
+        #print('Running ' + query)
         cur.execute(query)
         results = cur.fetchone()
 
         for row in results:
-            print("   ", row)
+            print("Number of rows", row)
 
 
 def main():
