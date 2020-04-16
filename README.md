@@ -19,7 +19,7 @@ Projects done in the [Data Engineer Nanodegree by Udacity.com](https://www.udaci
 - Select the appropriate primary key and clustering columns for a given use case
 - Create a NoSQL database in Apache Cassandra
 
-#### Project: Data Modeling with Postgres and Apache Cassandra
+#### Project 1: Data Modeling with Postgres and Apache Cassandra
 
 ## Course 2: Cloud Data Warehouses
 ### Introduction to the Data Warehouses
@@ -61,3 +61,26 @@ Projects done in the [Data Engineer Nanodegree by Udacity.com](https://www.udaci
 - Understand the components and issues of data lakes
 
 #### Project 3: Big Data with Spark
+
+## Course 4: Automate Data Pipelines
+
+### Data Pipelines
+➔ Create data pipelines with Apache Airflow
+➔ Set up task dependencies
+➔ Create data connections using hooks
+
+### Data Quality
+- Track data lineage
+- Set up data pipeline schedules
+- Partition data to optimize pipelines
+- Write tests to ensure data quality
+- Backfill data
+
+### Production Data Pipelines
+- Build reusable and maintainable pipelines
+- Build your own Apache Airflow plugins
+- Implement subDAGs
+- Set up task boundaries
+- Monitor data pipelines
+
+#### Project 4: Data Pipelines with Airflow
