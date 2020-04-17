@@ -65,9 +65,9 @@ Projects done in the [Data Engineer Nanodegree by Udacity.com](https://www.udaci
 ## Course 4: Automate Data Pipelines
 
 ### Data Pipelines
-➔ Create data pipelines with Apache Airflow
-➔ Set up task dependencies
-➔ Create data connections using hooks
+- Create data pipelines with Apache Airflow
+- Set up task dependencies
+- Create data connections using hooks
 
 ### Data Quality
 - Track data lineage
