@@ -1,17 +1,17 @@
 from datetime import datetime, timedelta
-from airflow import DAG
+from airflow.models import DAG
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.subdag_operator import SubDagOperator
 from airflow.operators import (StageToRedshiftOperator, LoadFactOperator,
                                 DataQualityOperator, CreateTablesOperator)
 from helpers import SqlQueries
-from sparkify_dend_dimesions_subdag import load_dimensional_tables_dag
+from sparkify_dimensions_subdag import load_dimensional_tables_dag
 
 
 start_date = datetime.utcnow()
 
 default_args = {
-    'owner': 'florencia',
+    'owner': 'Amir Kroudir',
     'start_date': datetime(2018, 5, 1),
     'end_date': datetime(2018, 11, 30),
     'depends_on_past': False,
@@ -97,7 +97,7 @@ load_song_dimension_table = SubDagOperator(
         redshift_conn_id="redshift",
         aws_credentials_id="aws_credentials",
         start_date= datetime(2018, 5, 1),
-        table="users",
+        table="song",
         sql_query=SqlQueries.song_table_insert,
     ),
     task_id=load_song_dimension_table_task_id,
@@ -106,12 +106,12 @@ load_song_dimension_table = SubDagOperator(
 
 load_artist_dimension_table_task_id='Load_artist_dim_table'
 load_artist_dimension_table = SubDagOperator(
-    subdag=load_dimensional_tables_dag(
+      subdag=load_dimensional_tables_dag(
         parent_dag_name=dag_name,
         task_id=load_artist_dimension_table_task_id,
         redshift_conn_id="redshift",
         aws_credentials_id="aws_credentials",
-        table="users",
+        table="artist",
         start_date= datetime(2018, 5, 1),
         sql_query=SqlQueries.artist_table_insert,
     ),
@@ -119,18 +119,18 @@ load_artist_dimension_table = SubDagOperator(
     dag=dag,
 )
 
-load_time_dimension_table_task_id='Load_artist_dim_table'
+load_time_dimension_table_task_id='Load_time_dim_table'
 load_time_dimension_table = SubDagOperator(
     subdag=load_dimensional_tables_dag(
         parent_dag_name=dag_name,
-        task_id=load_artist_dimension_table_task_id,
+        task_id=load_time_dimension_table_task_id,
         redshift_conn_id="redshift",
         aws_credentials_id="aws_credentials",
-        table="users",
+        table="time",
         start_date= datetime(2018, 5, 1),
-        sql_query=SqlQueries.artist_table_insert,
+        sql_query=SqlQueries.time_table_insert,
     ),
-    task_id=load_artist_dimension_table_task_id,
+    task_id=load_time_dimension_table_task_id,
     dag=dag,
 )
 
