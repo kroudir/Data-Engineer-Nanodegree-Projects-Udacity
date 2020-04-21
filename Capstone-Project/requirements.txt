@@ -113,7 +113,7 @@ Unidecode==1.1.1
 urllib3==1.25.3
 wcwidth==0.1.7
 webencodings==0.5.1
-Werkzeug==0.14.1
+Werkzeug==0.15.3
 widgetsnbextension==3.5.1
 WTForms==2.2.1
 zope.deprecation==4.4.0
