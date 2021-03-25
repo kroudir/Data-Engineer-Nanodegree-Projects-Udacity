@@ -87,7 +87,7 @@ python-slugify==1.2.6
 python3-openid==3.1.0
 pytz==2019.1
 pytzdata==2019.2
-PyYAML==5.1.1
+PyYAML==5.4
 pyzmq==18.1.0
 qtconsole==4.5.3
 requests==2.22.0
