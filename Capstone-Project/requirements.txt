@@ -60,7 +60,7 @@ MarkupSafe==1.1.1
 mistune==0.8.4
 nbconvert==5.5.0
 nbformat==4.4.0
-notebook==6.0.0
+notebook==6.4.1
 numpy==1.16.4
 oauthlib==3.0.1
 pandas==0.25.0
