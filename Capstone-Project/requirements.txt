@@ -3,7 +3,7 @@ apache-airflow==1.10.3
 appnope==0.1.0
 asn1crypto==0.24.0
 attrs==19.1.0
-Babel==2.7.0
+Babel==2.9.1
 backcall==0.1.0
 bleach==3.1.0
 blinker==1.4
