@@ -75,7 +75,7 @@ psutil==5.6.3
 ptyprocess==0.6.0
 pycparser==2.19
 Pygments==2.4.2
-PyJWT==1.7.1
+PyJWT==2.4.0
 pyOpenSSL==19.0.0
 pyrsistent==0.14.11
 PySocks==1.7.0
